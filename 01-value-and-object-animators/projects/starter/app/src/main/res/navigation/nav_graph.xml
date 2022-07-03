@@ -31,7 +31,6 @@
     tools:layout="@layout/fragment_details">
     <argument
       android:name="movieId"
-      app:argType="integer"
-      android:defaultValue="-1" />
+      app:argType="integer" />
   </fragment>
 </navigation>
