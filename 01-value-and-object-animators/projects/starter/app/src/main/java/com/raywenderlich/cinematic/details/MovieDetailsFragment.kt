@@ -50,7 +50,7 @@ import com.raywenderlich.cinematic.databinding.FragmentDetailsBinding
 import com.raywenderlich.cinematic.model.Movie
 import com.raywenderlich.cinematic.util.Constants.IMAGE_BASE
 import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailsFragment : Fragment(R.layout.fragment_details) {
 

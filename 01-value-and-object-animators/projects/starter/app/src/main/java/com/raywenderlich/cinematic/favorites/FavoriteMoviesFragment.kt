@@ -68,7 +68,8 @@ class FavoriteMoviesFragment : Fragment(R.layout.fragment_favorites) {
     favoritesAdapter.setListener(object : MovieListClickListener {
       override fun onMovieClicked(movie: Movie) {
         findNavController().navigate(
-            FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailsFragment(movie.id))
+            FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailsFragment()
+        )
       }
 
     })

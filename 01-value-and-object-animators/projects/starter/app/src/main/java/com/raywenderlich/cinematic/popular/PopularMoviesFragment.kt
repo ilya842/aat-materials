@@ -70,7 +70,8 @@ class PopularMoviesFragment : Fragment(R.layout.fragment_popular) {
     popularAdapter.setListener(object : MovieListClickListener {
       override fun onMovieClicked(movie: Movie) {
         findNavController().navigate(
-            PopularMoviesFragmentDirections.actionPopularMoviesFragmentToMovieDetailsFragment(movie.id))
+            PopularMoviesFragmentDirections.actionPopularMoviesFragmentToMovieDetailsFragment()
+        )
       }
 
     })
