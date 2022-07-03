@@ -38,6 +38,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -152,7 +154,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_details) {
         binding.backdrop.isVisible = true
         binding.backdrop.setImageDrawable(it)
         if (viewModel.shouldAnimate) {
-          //TODO animate backdrop
+          animateBackdrop()
         }
       }.build()
     requireContext().imageLoader.enqueue(posterRequest)
@@ -161,11 +163,35 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_details) {
   private fun animatePoster() {
     binding.posterContainer.alpha = 0f
     ValueAnimator.ofFloat(0f, 1f).apply {
-      duration = 1000
+      duration = DURATION_MS
       addUpdateListener {
-        val animatedValue = it.animatedValue as Float
-        binding.posterContainer.alpha = animatedValue
+        val animatedValue = valueAsFloat()
+        binding.posterContainer.apply {
+          alpha = animatedValue
+          scaleX = animatedValue
+          scaleY = animatedValue
+        }
+      }
+      interpolator = OvershootInterpolator()
+    }.start()
+  }
+
+  private fun animateBackdrop() {
+    val finalYPosition = binding.backdrop.y
+    val startYPosition = finalYPosition + 40
+    binding.backdrop.y = startYPosition
+    ValueAnimator.ofFloat(startYPosition, finalYPosition).apply {
+      duration = DURATION_MS
+      interpolator = DecelerateInterpolator()
+      addUpdateListener {
+        binding.backdrop.translationY = it.valueAsFloat()
       }
     }.start()
+  }
+
+  private fun ValueAnimator.valueAsFloat() = animatedValue as Float
+
+  companion object {
+    private const val DURATION_MS = 1000L
   }
 }
