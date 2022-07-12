@@ -38,7 +38,7 @@ import com.raywenderlich.cinematic.details.CastAdapter
 import com.raywenderlich.cinematic.details.MovieDetailsViewModel
 import com.raywenderlich.cinematic.favorites.FavoriteMoviesViewModel
 import com.raywenderlich.cinematic.popular.PopularMoviesViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
